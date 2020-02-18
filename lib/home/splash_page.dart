@@ -11,10 +11,10 @@ import 'package:rxdart/rxdart.dart';
 import 'package:zhacpai/common/common.dart';
 import 'package:zhacpai/login/login_router.dart';
 import 'package:zhacpai/provider/app_data_provider.dart';
+import 'package:zhacpai/res/styles.dart';
 import 'package:zhacpai/routers/fluro_navigator.dart';
 import 'package:zhacpai/util/image_utils.dart';
 import 'package:zhacpai/util/theme_utils.dart';
-import 'package:zhacpai/widgets/load_image.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -73,7 +73,7 @@ class _SplashPageState extends State<SplashPage> {
   _goLogin() {
     NavigatorUtils.push(context, LoginRouter.loginPage, replace: true);
   }
-
+//
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -83,7 +83,20 @@ class _SplashPageState extends State<SplashPage> {
             widthFactor: 0.33,
             leftFactor: 0.33,
             bottomFactor: 0,
-            child:   SvgPicture.asset('assets/images/logo.svg'),
+            child:Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  SvgPicture.asset('assets/images/logo.svg',width: 80,height: 80)
+                  ,
+                  const Text(
+                    '黑客派',
+                    style: TextStyles.textBold26,
+                  )
+                  ]
+            )
+
+
+
         )
     );
   }

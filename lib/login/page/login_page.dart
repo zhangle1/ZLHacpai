@@ -6,8 +6,12 @@ import 'package:flustars/flustars.dart' as FlutterStars;
 
 import 'package:keyboard_actions/keyboard_actions.dart';
 import 'package:zhacpai/common/common.dart';
+import 'package:zhacpai/login/presenter/login_presenter.dart';
+import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/gaps.dart';
 import 'package:zhacpai/res/styles.dart';
+import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/routers/routers.dart';
 import 'package:zhacpai/util/utils.dart';
 import 'package:zhacpai/widgets/app_bar.dart';
 import 'package:zhacpai/widgets/my_button.dart';
@@ -17,10 +21,10 @@ import 'package:zhacpai/widgets/text_field.dart';
 /// design/1注册登录/index.html
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends BasePageState<LoginPage,LoginPagePresenter> {
   //定义一个controller
   TextEditingController _nameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -41,7 +45,7 @@ class _LoginPageState extends State<LoginPage> {
     String name = _nameController.text;
     String password = _passwordController.text;
     bool isClick = true;
-    if (name.isEmpty || name.length < 11) {
+    if (name.isEmpty || name.length < 5) {
       isClick = false;
     }
     if (password.isEmpty || password.length < 6) {
@@ -55,18 +59,23 @@ class _LoginPageState extends State<LoginPage> {
       });
     }
   }
-  
-  void _login() {
-    FlutterStars.SpUtil.putString(Constant.phone, _nameController.text);
-//    NavigatorUtils.push(context, StoreRouter.auditPage);
+
+   void _login() {
+//    FlutterStars.SpUtil.putString(Constant.phone, _nameController.text);
+    presenter.login(_nameController.text, _passwordController.text);
   }
+
+  void goHomePage(){
+    NavigatorUtils.push(context, Routes.home, clearStack: true);
+  }
+
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
         isBack: false,
-        actionName: '验证码登录',
+        actionName: '',
         onPressed: () {
 //          NavigatorUtils.push(context, LoginRouter.smsLoginPage);
         },
@@ -95,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
             focusNode: _nodeText1,
             controller: _nameController,
             maxLength: 11,
-            keyboardType: TextInputType.phone,
+            keyboardType: TextInputType.text,
             hintText: '请输入账号',
           ),
           Gaps.vGap8,
@@ -117,32 +126,16 @@ class _LoginPageState extends State<LoginPage> {
             onPressed: _isClick ? _login : null,
             text: '登录',
           ),
-          Container(
-            height: 40.0,
-            alignment: Alignment.centerRight,
-            child: GestureDetector(
-              child: Text(
-                '忘记密码',
-                style: Theme.of(context).textTheme.subtitle,
-              ),
-              onTap: () => {},
-            ),
-          ),
+
           Gaps.vGap16,
-          Container(
-              alignment: Alignment.center,
-              child: GestureDetector(
-                child: Text(
-                  '还没账号？快去注册',
-                  style: TextStyle(
-                      color: Theme.of(context).primaryColor
-                  ),
-                ),
-                onTap: () =>{},
-              )
-          )
+
         ],
       ),
     );
+  }
+
+  @override
+  LoginPagePresenter createPresenter() {
+    return LoginPagePresenter();
   }
 }

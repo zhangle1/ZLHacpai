@@ -6,10 +6,12 @@ import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:sprintf/sprintf.dart';
 import 'package:zhacpai/common/common.dart';
+import 'package:zhacpai/login/models/LoginEntity.dart';
 import 'package:zhacpai/util/log_utils.dart';
 
 import 'dio_utils.dart';
 import 'error_handle.dart';
+import 'http_api.dart';
 
 
 class LoggingInterceptor extends Interceptor{
@@ -17,10 +19,12 @@ class LoggingInterceptor extends Interceptor{
   DateTime startTime;
   DateTime endTime;
 
+
   @override
   onRequest(RequestOptions options) {
     startTime = DateTime.now();
     Log.d('----------Start----------');
+
     if (options.queryParameters.isEmpty) {
       Log.d('RequestUrl: ' + options.baseUrl + options.path);
     } else {
@@ -37,12 +41,18 @@ class LoggingInterceptor extends Interceptor{
   @override
   onResponse(Response response) {
     endTime = DateTime.now();
+
+
     int duration = endTime.difference(startTime).inMilliseconds;
     if (response.statusCode == ExceptionHandle.success) {
       Log.d('ResponseCode: ${response.statusCode}');
+
+
     } else {
       Log.e('ResponseCode: ${response.statusCode}');
     }
+
+//    Log.d('Uri: ${ response.realUri.toString()}');
     // 输出结果
     Log.json(response.data.toString());
     Log.d('----------End: $duration 毫秒----------');
@@ -55,6 +65,54 @@ class LoggingInterceptor extends Interceptor{
     return super.onError(err);
   }
 }
+
+
+class HeaderInterceptor extends Interceptor{
+
+
+  @override
+  Future onRequest(RequestOptions options) {
+        options.headers["User-Agent"]="Zhacpai/v0.0.1";
+        return super.onRequest(options);
+
+  }
+
+  @override
+  Future onResponse(Response response) {
+
+
+      return super.onResponse(response);
+  }
+}
+
+class LoginSaveInterceptor extends Interceptor{
+
+  String requestUrl;
+
+  @override
+  Future onRequest(RequestOptions options) {
+
+
+    requestUrl=options.baseUrl + options.path;
+
+    return super.onRequest(options);
+  }
+
+  @override
+  Future onResponse(Response response) {
+
+
+    if(requestUrl=='https://hacpai.com/api/v2/login'){
+       var loginEntity = LoginEntity.fromJson(json.decode(response.data));
+       var userEntity= DioUtils.instance.getDio().get(HttpApi.users+loginEntity.userName,queryParameters:{});
+       SpUtil.putString(Constant.userName, loginEntity.userName);
+       SpUtil.putString(Constant.userData, userEntity.toString());
+    }
+
+    return super.onResponse(response);
+  }
+}
+
 
 
 

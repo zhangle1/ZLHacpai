@@ -9,8 +9,13 @@ class Constant{
   static const String accessToken = 'accessToken';
 
 
+
+
   static const String userName='userName';
   static const String userPassword='userPassword';
+
+  //
+  static const String userData="userData";
 
   static const String data = 'data';
   static const String msg = 'msg';

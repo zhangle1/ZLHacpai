@@ -36,7 +36,7 @@ class DioUtils {
         // 不使用http状态码判断状态，使用AdapterInterceptor来处理（适用于标准REST风格）
         return true;
       },
-      baseUrl: 'https://api.github.com/',
+      baseUrl: 'https://hacpai.com/api/v2/',
       //      contentType: ContentType('application', 'x-www-form-urlencoded', charset: 'utf-8'),
     );
     _dio = Dio(options);
@@ -52,15 +52,17 @@ class DioUtils {
 //          (X509Certificate cert, String host, int port) => true;
 //    };
     /// 持久化Cookie处理
-    _dio.interceptors.add(CookieManager(PersistCookieJar()));
+    _dio.interceptors.add(CookieManager(CookieJar()));
 
-    /// 打印Log(生产模式去除)
+    _dio.interceptors.add(HeaderInterceptor());
+    _dio.interceptors.add(LoginSaveInterceptor());
+//    // 打印Log(生产模式去除)
     if (!Constant.inProduction) {
       _dio.interceptors.add(LoggingInterceptor());
     }
 
     /// 适配数据(根据自己的数据结构，可自行选择添加)
-    _dio.interceptors.add(AdapterInterceptor());
+//    _dio.interceptors.add(AdapterInterceptor());
   }
 
   // 数据返回格式统一，统一处理异常
