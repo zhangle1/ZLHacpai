@@ -38,6 +38,9 @@ class LoginPageState extends BasePageState<LoginPage,LoginPagePresenter> {
     //监听输入改变  
     _nameController.addListener(_verify);
     _passwordController.addListener(_verify);
+
+    _nameController.text='zhangle1' ;
+    _passwordController.text='123123';
     _nameController.text = FlutterStars.SpUtil.getString(Constant.phone);
   }
 

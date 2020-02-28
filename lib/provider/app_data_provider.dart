@@ -64,7 +64,7 @@ class AppDataProvider extends ChangeNotifier{
         ),
         appBarTheme: AppBarTheme(
           elevation: 0.0,
-          color: isDarkMode ? Colours.dark_bg_color : Colors.white,
+          color: isDarkMode ? Colours.dark_bg_color : Colours.searchBackgroundColor,
           brightness: isDarkMode ? Brightness.dark : Brightness.light,
         ),
         dividerTheme: DividerThemeData(

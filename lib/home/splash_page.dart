@@ -15,6 +15,7 @@ import 'package:zhacpai/res/styles.dart';
 import 'package:zhacpai/routers/fluro_navigator.dart';
 import 'package:zhacpai/util/image_utils.dart';
 import 'package:zhacpai/util/theme_utils.dart';
+import 'package:zhacpai/widgets/load_image.dart';
 
 class SplashPage extends StatefulWidget {
   @override
@@ -86,7 +87,7 @@ class _SplashPageState extends State<SplashPage> {
             child:Column(
               crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  SvgPicture.asset('assets/images/logo.svg',width: 80,height: 80)
+                  LoadSVGAssetImage('logo',width: 80,height: 80)
                   ,
                   const Text(
                     '黑客派',

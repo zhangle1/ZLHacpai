@@ -117,11 +117,7 @@ class LoadSVGAssetImage extends StatelessWidget {
       ImageUtils.getImgSVGPath(image, format: format),
       height: height,
       width: width,
-      fit: fit,
-      semanticsLabel: 'Acme Logo',
-
-      /// 忽略图片语义
-      excludeFromSemantics: true,
+      color: color,
     );
   }
 }

@@ -5,4 +5,8 @@ class HttpApi{
 
   static const String login='login';
   static const String users='user/';
+
+
+  static const String lastArticles='articles/latest';
+
 }

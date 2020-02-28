@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
 //              checkerboardRasterCacheImages: true,
 //              showSemanticsDebugger: true, // 显示语义视图
                   theme: provider.getTheme(),
-                  darkTheme: provider.getTheme(isDarkMode: true),
-                  themeMode: provider.getThemeMode(),
+                  darkTheme: provider.getTheme(),
+
                   home: home ?? SplashPage(),
                   onGenerateRoute: Application.router.generator,
                   localizationsDelegates: const [

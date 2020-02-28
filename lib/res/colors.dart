@@ -39,5 +39,11 @@ class Colours {
 
   static const Color bg_gray_ = Color(0xFFFAFAFA);
   static const Color dark_bg_gray_ = Color(0xFF242526);
+
+
+  static Color fontColor =  Color(0x4DFFFFFF);
+  static Color searchBackgroundColor = Color(0xFFEAEAEA);
+
+
 }
 

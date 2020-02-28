@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:zhacpai/home/home_page.dart';
 import 'package:zhacpai/login/login_router.dart';
 import 'package:zhacpai/routers/router_init.dart';
 
@@ -21,8 +22,8 @@ class Routes {
           return WidgetNotFound();
         });
 
-//    router.define(home, handler: Handler(
-//        handlerFunc: (BuildContext context, Map<String, List<String>> params) => Home()));
+    router.define(home, handler: Handler(
+        handlerFunc: (BuildContext context, Map<String, List<String>> params) => Home()));
 
 //    router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
 //      String title = params['title']?.first;

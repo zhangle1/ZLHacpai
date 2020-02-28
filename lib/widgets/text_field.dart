@@ -98,8 +98,8 @@ class _MyTextFieldState extends State<MyTextField> {
       // 因Android平台输入法兼容问题，所以只配置IOS平台
       FormKeyboardActions.setKeyboardActions(context, widget.config);
     }
-    ThemeData themeData = Theme.of(context);
-    bool isDark = themeData.brightness == Brightness.dark;
+//    ThemeData themeData = Theme.of(context);
+    bool isDark =false;
     return Stack(
       alignment: Alignment.centerRight,
       children: <Widget>[
@@ -120,13 +120,13 @@ class _MyTextFieldState extends State<MyTextField> {
               counterText: '',
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: themeData.primaryColor,
+                      color: Colours.app_main,
                       width: 0.8
                   )
               ),
               enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
-                      color: Theme.of(context).dividerTheme.color,
+                      color: Colours.line,
                       width: 0.8
                   )
               )
@@ -178,14 +178,14 @@ class _MyTextFieldState extends State<MyTextField> {
               ),
               child: FlatButton(
                 onPressed: _isClick ? _getVCode : null,
-                textColor: themeData.primaryColor,
+                textColor: Colours.app_main,
                 color: Colors.transparent,
                 disabledTextColor: isDark ? Colours.dark_text : Colors.white,
                 disabledColor: isDark ? Colours.dark_text_gray : Colours.text_gray_c,
                 shape:RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(1.0),
                     side: BorderSide(
-                      color: _isClick ? themeData.primaryColor : Colors.transparent,
+                      color: _isClick ? Colours.app_main : Colors.transparent,
                       width: 0.8,
                     )
                 ),
