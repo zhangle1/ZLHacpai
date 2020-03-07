@@ -107,6 +107,7 @@ class LoginSaveInterceptor extends Interceptor{
        var userEntity= DioUtils.instance.getDio().get(HttpApi.users+loginEntity.userName,queryParameters:{});
        SpUtil.putString(Constant.userName, loginEntity.userName);
        SpUtil.putString(Constant.userData, userEntity.toString());
+       SpUtil.putString(Constant.accessToken, loginEntity.token);
     }
 
     return super.onResponse(response);

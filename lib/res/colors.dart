@@ -45,5 +45,7 @@ class Colours {
   static Color searchBackgroundColor = Color(0xFFEAEAEA);
 
 
+  static Color globalBackgroundColor=Color(0xFFEAEAEA);
+
 }
 

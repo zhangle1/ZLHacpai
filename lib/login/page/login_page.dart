@@ -40,8 +40,8 @@ class LoginPageState extends BasePageState<LoginPage,LoginPagePresenter> {
     _passwordController.addListener(_verify);
 
     _nameController.text='zhangle1' ;
-    _passwordController.text='123123';
-    _nameController.text = FlutterStars.SpUtil.getString(Constant.phone);
+    _passwordController.text='qq123123';
+//    _nameController.text = FlutterStars.SpUtil.getString(Constant.phone);
   }
 
   void _verify() {
