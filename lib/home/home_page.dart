@@ -5,7 +5,7 @@ import 'package:zhacpai/dynamic/page/dynamic_page.dart';
 import 'package:zhacpai/first/page/first_page.dart';
 import 'package:zhacpai/home/provider/home_provider.dart';
 import 'package:zhacpai/login/page/login_page.dart';
-import 'package:zhacpai/my/my_page.dart';
+import 'package:zhacpai/my/page/my_page.dart';
 import 'package:zhacpai/res/colors.dart';
 import 'package:zhacpai/res/dimens.dart';
 import 'package:zhacpai/util/double_tap_back_exit_app.dart';

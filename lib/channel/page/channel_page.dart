@@ -9,7 +9,6 @@ import 'package:zhacpai/channel/provider/channel_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
 import 'package:zhacpai/res/gaps.dart';
-import 'package:zhacpai/res/styles.dart';
 import 'package:zhacpai/util/randomUtils.dart';
 import 'package:zhacpai/widgets/load_image.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
