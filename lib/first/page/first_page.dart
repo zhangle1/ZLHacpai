@@ -1,6 +1,8 @@
 
 
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:zhacpai/first/page/follow_page.dart';
+import 'package:zhacpai/first/page/hot_page.dart';
 import 'package:zhacpai/first/page/recommend.dart';
 import 'package:zhacpai/login/page/login_page.dart';
 import 'package:zhacpai/res/colors.dart';
@@ -106,9 +108,9 @@ class  _FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMix
             ),
             body: new TabBarView(
                 children: [
-                  new LoginPage(),
+                  new FollowPage(),
                   new RecommendPage(),
-                  new LoginPage()
+                  new HotPage()
                 ]
             ),
             backgroundColor: Colours.searchBackgroundColor,

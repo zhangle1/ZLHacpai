@@ -38,9 +38,10 @@ class HotPresenter  extends BasePagePresenter<HotPageState>{
           onSuccess: (data){
             if (data != null) {
 
-              data.articles= data.articles.take(10);
+//              data.articles= data.articles.take(10);
               view.provider.setHasMore(false);
               if (page == 1) {
+
                 /// 刷新
                 view.provider.list.clear();
                 if (data.articles.isEmpty) {

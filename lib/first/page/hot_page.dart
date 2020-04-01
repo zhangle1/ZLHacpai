@@ -22,12 +22,11 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
 
   @override
   void initState() {
-
-    provider.setStateType(StateType.loading);
-    _onRefresh();
+    provider.setStateTypeNotNotify(StateType.loading);
     super.initState();
-  }
+    _onRefresh();
 
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +36,20 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
         builder: (_, provider, __) {
           return DeerListView(
             key: Key('hot'),
-            itemCount: provider.list.length+1,
+            itemCount: provider.list.length ,
             stateType: provider.stateType,
             onRefresh: _onRefresh,
             itemExtent: null,
             hasMore: provider.hasMore,
             itemBuilder: (_, index) {
-              return index==0?Container(
-                width: double.infinity,
-                height: 10,
-                color: Colours.searchBackgroundColor,
-              ):hotCard(provider.list[index-1]);
+              return index == 0
+                  ? Container(
+                      width: double.infinity,
+                      height: 10,
+                      color: Colours.searchBackgroundColor,
+                    )
+                  : hotCard(provider.list[index ], index);
             },
-
           );
         },
       ),
@@ -66,10 +66,48 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
     await presenter.getHotArticles(ArticleType.hot, _page, false);
   }
 
-  Widget hotCard(Articles list) {
-
-
-
+  Widget hotCard(Articles article, int index) {
+    return Container(
+      decoration: new BoxDecoration(
+          color: Colors.white,
+          border: new BorderDirectional(
+              bottom: new BorderSide(
+                  color: Colours.searchBackgroundColor, width: 1.0))),
+      child: FlatButton(
+        onPressed: () {},
+        child: Container(
+          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                flex: 1,
+                child: Text(
+                  index.toString(),
+                  style: TextStyle(
+                      color:
+                          index.compareTo(3) <= 0 ? Colors.red : Colors.yellow,
+                      fontSize: 18.0),
+                ),
+              ),
+              Expanded(
+                  flex: 6,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: new Text(
+                      article.articleTitle,
+                      textAlign: TextAlign.left,
+                      style: new TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16.0,
+                          height: 1.1,
+                          color: Colors.black),
+                    ),
+                  )),
+            ],
+          ),
+          alignment: Alignment.centerLeft,
+        ),
+      ),
+    );
   }
-
 }

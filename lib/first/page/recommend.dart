@@ -7,6 +7,7 @@ import 'package:zhacpai/first/presenter/recommend_presenter.dart';
 import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
+import 'package:zhacpai/util/cookie_utils.dart';
 import 'package:zhacpai/util/log_utils.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
@@ -71,12 +72,15 @@ class RecommendPageState
     return RecommendPresenter();
   }
 
+
+
+
   Widget commonCard(Articles article) {
     Widget markWidget;
     var map = getCookieMap();
 
     Log.e(article.articleImg1URL.toString(),tag: 'img');
-    if (article.articleImg1URL == null) {
+    if (article.articleImg1URL == null||article.articleImg1URL.isEmpty) {
       markWidget = new Text(
         article.articlePreviewContent.replaceAll("[图片]", ""),
         maxLines: 3,
@@ -176,12 +180,4 @@ class RecommendPageState
     );
   }
 
-  Map<String, String> getCookieMap() {
-    var token=SpUtil.getString(Constant.accessToken);
-    Log.e(token,tag: 'token:');
-    Map<String, String> headersMap = {
-      'cookie' : 'symphony='+token
-    };
-    return headersMap;
-  }
 }

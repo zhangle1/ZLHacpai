@@ -74,4 +74,35 @@ class TextStyles {
     fontSize: Dimens.font_sp14,
     color: Colours.dark_unselected_item_color
   );
+
+
+  static TextStyle listTitle = TextStyle(
+    fontSize: Dimens.font_sp16,
+    color: Colours.text_dark,
+    fontWeight: FontWeight.bold,
+  );
+  static TextStyle listTitle2 = TextStyle(
+    fontSize: Dimens.font_sp16,
+    color: Colours.text_dark,
+  );
+  static TextStyle listContent = TextStyle(
+    fontSize: Dimens.font_sp14,
+    color: Colours.text_normal,
+  );
+  static TextStyle listContent2 = TextStyle(
+    fontSize: Dimens.font_sp14,
+    color: Colours.text_gray,
+  );
+  static TextStyle listExtra = TextStyle(
+    fontSize: Dimens.font_sp12,
+    color: Colours.text_gray,
+  );
+  static TextStyle listExtra2 = TextStyle(
+    fontSize: Dimens.font_sp12,
+    color: Colours.text_normal,
+  );
+  static const TextStyle appTitle = TextStyle(
+    fontSize: Dimens.font_sp18,
+    color: Colours.text_dark,
+  );
 }

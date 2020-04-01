@@ -6,6 +6,11 @@ class HttpApi{
   static const String login='login';
   static const String users='user/';
 
+  static const String suffixMyFollowPeople='/following/users';
+  static const String suffixUserArticles='/following/articles';
+
+  static const String doMainList='domains';
+  static const String tagsList='tags';
 
   static const String lastArticles='articles/latest';
 

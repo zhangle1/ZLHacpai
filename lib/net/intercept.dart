@@ -73,6 +73,7 @@ class HeaderInterceptor extends Interceptor{
   @override
   Future onRequest(RequestOptions options) {
         options.headers["User-Agent"]="Zhacpai/v0.0.1";
+        options.headers['Referer']='localhost';
         return super.onRequest(options);
 
   }

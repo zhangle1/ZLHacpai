@@ -21,8 +21,11 @@ class DeerListView extends StatefulWidget {
     this.pageSize : 10,
     this.padding,
     this.itemExtent,
+    this.reverse=false
   }): super(key: key);
 
+
+  final bool reverse;
   final RefreshCallback onRefresh;
   final LoadMoreCallback loadMore;
   final int itemCount;
@@ -63,6 +66,7 @@ class _DeerListViewState extends State<DeerListView> {
           child: widget.itemCount == 0 ? StateLayout(type: widget.stateType) : ListView.builder(
             itemCount: widget.loadMore == null ? widget.itemCount : widget.itemCount + 1,
             padding: widget.padding,
+            reverse: widget.reverse,
             itemExtent: widget.itemExtent,
             itemBuilder: (BuildContext context, int index) {
               /// 不需要加载更多则不需要添加FootView

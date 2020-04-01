@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zhacpai/channel/channel_page.dart';
-import 'package:zhacpai/dynamic/dynamic_page.dart';
+import 'package:zhacpai/channel/page/channel_page.dart';
+import 'package:zhacpai/dynamic/page/dynamic_page.dart';
 import 'package:zhacpai/first/page/first_page.dart';
 import 'package:zhacpai/home/provider/home_provider.dart';
 import 'package:zhacpai/login/page/login_page.dart';
