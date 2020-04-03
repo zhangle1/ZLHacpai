@@ -23,9 +23,6 @@ class LoginPagePresenter extends BasePagePresenter<LoginPageState>{
     Log.e("LoginPagePresenter password md5:"+params['userPassword']);
 
 
-
-
-
     await requestNetwork<String>(Method.post,
         url: HttpApi.login,
         params:  {'userName':userName,'userPassword':EncryptionUtils.generateMd5(password)},

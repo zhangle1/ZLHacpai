@@ -1,12 +1,12 @@
-import 'package:flustars/flustars.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zhacpai/common/common.dart';
 import 'package:zhacpai/first/models/article_entity.dart';
 import 'package:zhacpai/first/presenter/recommend_presenter.dart';
 import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
+import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/routers/routers.dart';
 import 'package:zhacpai/util/cookie_utils.dart';
 import 'package:zhacpai/util/log_utils.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
@@ -72,15 +72,12 @@ class RecommendPageState
     return RecommendPresenter();
   }
 
-
-
-
   Widget commonCard(Articles article) {
     Widget markWidget;
     var map = getCookieMap();
 
-    Log.e(article.articleImg1URL.toString(),tag: 'img');
-    if (article.articleImg1URL == null||article.articleImg1URL.isEmpty) {
+    Log.e(article.articleImg1URL.toString(), tag: 'img');
+    if (article.articleImg1URL == null || article.articleImg1URL.isEmpty) {
       markWidget = new Text(
         article.articlePreviewContent.replaceAll("[图片]", ""),
         maxLines: 3,
@@ -106,7 +103,8 @@ class RecommendPageState
               child: Container(
                 foregroundDecoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(article.articleImg1URL,headers: map),
+                        image:
+                            NetworkImage(article.articleImg1URL, headers: map),
                         centerSlice:
                             Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0)),
                     borderRadius:
@@ -123,15 +121,22 @@ class RecommendPageState
       margin: const EdgeInsets.only(top: 16.0),
       padding: const EdgeInsets.only(bottom: 12.0),
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          NavigatorUtils.push(
+              context,
+              '${Routes.articleDetails}?articleId=${article.oId}&nickName=${Uri.encodeComponent(article.articleAuthor.userNickname)}&image=${Uri.encodeComponent(article.articleAuthorThumbnailURL96)}');
+        },
+//          &nickName=${article.articleAuthor.userNickname}
+//
         child: new Column(
           children: <Widget>[
             new Container(
               child: new Row(
                 children: <Widget>[
                   new CircleAvatar(
-                    backgroundImage:
-                        new NetworkImage(article.articleAuthorThumbnailURL96,headers: map),
+                    backgroundImage: new NetworkImage(
+                        article.articleAuthorThumbnailURL96,
+                        headers: map),
                     radius: 16,
                   ),
                   new Text(
@@ -179,5 +184,4 @@ class RecommendPageState
       ),
     );
   }
-
 }

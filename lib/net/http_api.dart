@@ -12,6 +12,10 @@ class HttpApi{
   static const String doMainList='domains';
   static const String tagsList='tags';
 
+
+  static const String articleDetails='article/';
+
+  static const String baseUrl='https://hacpai.com/';
   // my
   static const String myDetailInfo='user';
   static const String myUnread='notifications/unread/count';

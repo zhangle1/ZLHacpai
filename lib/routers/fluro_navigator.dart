@@ -1,5 +1,6 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:zhacpai/routers/routers.dart';
 
 import 'application.dart';
@@ -44,4 +45,14 @@ class NavigatorUtils {
     //fluro 不支持传中文,需转换
     push(context, '${Routes.webViewPage}?title=${Uri.encodeComponent(title)}&url=${Uri.encodeComponent(url)}');
   }
+
+
+  static  launchInBrowser(String url, {String title}) async {
+    if (await canLaunch(url)) {
+      await launch(url, forceSafariVC: false, forceWebView: false);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
 }

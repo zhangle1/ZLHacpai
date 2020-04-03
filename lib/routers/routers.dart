@@ -1,5 +1,7 @@
+import 'package:common_utils/common_utils.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
+import 'package:zhacpai/first/page/article_details_page.dart';
 import 'package:zhacpai/home/home_page.dart';
 import 'package:zhacpai/login/login_router.dart';
 import 'package:zhacpai/routers/router_init.dart';
@@ -10,6 +12,9 @@ class Routes {
 
   static String home = '/home';
   static String webViewPage = '/webview';
+
+
+  static String articleDetails='/articleDetails';
 
   static List<IRouterProvider> _listRouter = [];
 
@@ -24,7 +29,17 @@ class Routes {
 
     router.define(home, handler: Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) => Home()));
+    router.define(articleDetails, handler: Handler(handlerFunc: (_,params){
+      String articleId=  params['articleId'].first.toString();
+      String nickName=Uri.decodeComponent(params['nickName'].first.toString()??'');
+      LogUtil.e("articleId:"+articleId);
 
+      LogUtil.e("nickname:"+nickName);
+      String image=Uri.decodeComponent((params['image'].toString().replaceAll('[', '').replaceAll(']', '')??''));
+      LogUtil.e('pic:'+image);
+
+      return ArticleDetailsPage(articleId: articleId,  nickName:nickName,image: image,);
+    }));
 //    router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
 //      String title = params['title']?.first;
 //      String url = params['url']?.first;

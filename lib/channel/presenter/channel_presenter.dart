@@ -13,6 +13,8 @@ class ChannelPresenter extends BasePagePresenter<ChannelPageState> {
   final ChannelModel channelModel = ChannelModel();
 
   getRefreshChannelLabelData() async {
+
+
     var domain = channelModel.getDomainModelAsync();
     var tags = channelModel.getTagsModelAsync("1");
     Future.wait([domain, tags], eagerError: true).then((ret) {
