@@ -19,9 +19,21 @@ class DynamicSpiderModel {
    List<Element> elementLists=  driver.document.querySelectorAll(".chats__list > .chats__item");
 
    List<DynamicItemModel> modelList = elementLists.map<DynamicItemModel>((value){
-    return DynamicItemModel(value.querySelectorAll(".ft-a-title").first.innerHtml.replaceAll("@", ""),
-        value.querySelectorAll(".avatar").first.attributes["data-src"],
-        value.querySelectorAll("p").first.innerHtml
+    var userName = value.querySelectorAll(".ft-a-title");
+    var userNameText='';
+
+    var avatar =value.querySelectorAll(".avatar");
+    var avatarText='';
+
+    var content=value.querySelectorAll("p");
+    var contentText='';
+
+    if(userName.length!=0){userNameText=userName.first.innerHtml.replaceAll("@", "");}
+    if(avatar.length!=0){avatarText=avatar.first.attributes["data-src"];}
+    if(content.length!=0){contentText=content.first.innerHtml;}
+    return DynamicItemModel(userNameText,
+        avatarText,
+        contentText
     );
    }).toList();
 

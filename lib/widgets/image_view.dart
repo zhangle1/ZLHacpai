@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:zhacpai/util/check.dart';
+import 'package:zhacpai/util/cookie_utils.dart';
 
 
 class ImageView extends StatelessWidget {
@@ -24,11 +25,15 @@ class ImageView extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget image;
     if (isNetWorkImg(img)) {
+
+      var cookieMap = getCookieMap();
+
       image = new CachedNetworkImage(
         imageUrl: img,
         width: width,
         height: height,
         fit: fit,
+        httpHeaders:cookieMap ,
       );
     } else if (File(img).existsSync()) {
       image = new Image.file(

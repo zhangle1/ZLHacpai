@@ -42,7 +42,7 @@ class Colours {
 
 
   static Color fontColor =  Color(0x4DFFFFFF);
-  static Color searchBackgroundColor = Color(0xFFEAEAEA);
+  static const  Color searchBackgroundColor = Color(0xFFEAEAEA);
 
 
   static Color globalBackgroundColor=Color(0xFFEAEAEA);

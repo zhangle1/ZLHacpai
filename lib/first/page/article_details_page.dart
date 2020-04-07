@@ -9,6 +9,7 @@ import 'package:zhacpai/res/colors.dart';
 import 'package:zhacpai/res/gaps.dart';
 import 'package:zhacpai/res/styles.dart';
 import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/widgets/load_image.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
 
 class ArticleDetailsPage extends StatefulWidget {
@@ -108,6 +109,7 @@ class ArticleDetailState
                         children: <Widget>[
                           Flexible(
                             child: SingleChildScrollView(
+                              padding: EdgeInsets.only(top: 56,bottom: 56),
                               child: Html(
                                 data:
                                     provider.entity.data.article.articleContent,
@@ -119,6 +121,7 @@ class ArticleDetailState
                       Align(
                         alignment: Alignment.topLeft,
                         child: Container(
+                          height: 56,
                           padding: EdgeInsets.symmetric(vertical: 12,horizontal: 16),
                           color: Colors.white,
                           child: Row(
@@ -129,10 +132,62 @@ class ArticleDetailState
                               ),
                               new Text("  " + widget.nickName,
                                   style: new TextStyle(
-                                      color: Colours.dark_text_gray))
+                                      color: Colours.dark_text_gray)),
+                              Spacer(),
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8,horizontal: 12.0),
+                                child:  Text('关注',style: TextStyle(color: Colours.app_main),),
+                                  decoration: new BoxDecoration(
+                                    borderRadius: const BorderRadius.all(const Radius.circular(6.0)),
+                                    color: Colours.searchBackgroundColor,
+
+                                  )
+                              )
+
                             ],
                           ),
                         ),
+                      ),
+
+                      Positioned(
+
+                          child: Align(
+                            alignment: FractionalOffset.bottomLeft,
+                            child: Container(
+                              color: Colors.white,
+                              height: 56,
+                                child:Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Spacer(),
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        LoadSVGAssetImage('ic_liulang',width: 24,height: 24),
+                                        const Text(
+                                          '浏览',
+                                          style: TextStyle(color: Colours.dark_text),
+                                        )
+                                      ],
+                                    ),
+                                    Gaps.hGap16,
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        LoadSVGAssetImage('ic_pinglun',width: 24,height: 24)
+                                        ,
+                                        const Text(
+                                          '评论',
+                                          style: TextStyle(color: Colours.dark_text),
+                                        )
+                                      ],
+                                    ),
+                                    Gaps.hGap16,
+
+                                  ],
+                                )
+                            ),
+                          ),
                       )
                     ],
                   ));

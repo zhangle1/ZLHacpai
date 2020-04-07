@@ -1,14 +1,11 @@
-import 'package:extended_text/extended_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:provider/provider.dart';
 import 'package:zhacpai/dynamic/model/dynamic_item_model.dart';
 import 'package:zhacpai/dynamic/presenter/dynamic_presenter.dart';
-import 'package:zhacpai/edit/text_span_builder.dart';
 import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/gaps.dart';
-import 'package:zhacpai/util/win_media.dart';
 import 'package:zhacpai/widgets/image_view.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
 
@@ -40,6 +37,7 @@ class DynamicPageState extends BasePageState<DynamicPage, DynamicPresenter>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: Container(
           width: double.infinity,

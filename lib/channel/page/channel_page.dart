@@ -38,6 +38,7 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<ChannelProvider>(
         create: (_) => provider,
         child: Consumer<ChannelProvider>(

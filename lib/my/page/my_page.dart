@@ -6,6 +6,7 @@ import 'package:zhacpai/my/model/my_entity.dart';
 import 'package:zhacpai/my/presenter/my_presenter.dart';
 import 'package:zhacpai/my/provider/MyProvider.dart';
 import 'package:zhacpai/res/colors.dart';
+import 'package:zhacpai/util/cookie_utils.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
 
 class MyPage extends StatefulWidget {
@@ -17,13 +18,13 @@ class MyPage extends StatefulWidget {
 
 class MyPageState extends BasePageState<MyPage, MyPresenter>
     with AutomaticKeepAliveClientMixin<MyPage>, SingleTickerProviderStateMixin {
-  @override
-  bool get wantKeepAlive => true;
+    @override
+    bool get wantKeepAlive => true;
 
-  MyProvider provider = MyProvider();
+    MyProvider provider = MyProvider();
 
-  @override
-  void initState() {
+    @override
+    void initState() {
     super.initState();
     provider.stateType = StateType.loading;
     this.presenter.getRefreshMyDetailInfo();
@@ -31,6 +32,7 @@ class MyPageState extends BasePageState<MyPage, MyPresenter>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<MyProvider>(
         create: (_) => provider,
         child: Consumer<MyProvider>(builder: (_, provider, __) {
@@ -49,6 +51,8 @@ class MyPageState extends BasePageState<MyPage, MyPresenter>
   }
 
   Widget createMyInfoCard(MyEntity entity) {
+
+    var cookieMap = getCookieMap();
     var userItem = entity.myDetailInfoEntity.data.user;
     return Container(
       color: Colors.white,
@@ -68,7 +72,7 @@ class MyPageState extends BasePageState<MyPage, MyPresenter>
                   leading: Container(
                     child: new CircleAvatar(
                         backgroundImage: new NetworkImage(
-                            userItem.userAvatarURL48),
+                            userItem.userAvatarURL48,headers: cookieMap),
                         radius: 20.0),
                   ),
                   title: new Container(

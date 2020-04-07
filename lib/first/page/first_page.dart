@@ -89,6 +89,8 @@ class  _FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMix
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return new DefaultTabController(length: 3,
           child: new Scaffold(
             appBar: new AppBar(
@@ -103,8 +105,7 @@ class  _FirstPageState extends State<FirstPage> with AutomaticKeepAliveClientMix
                   new Tab(text: "热榜"),
                 ],
               ),
-              backgroundColor:Colours.material_bg ,
-
+              backgroundColor:Colours.material_bg,
             ),
             body: new TabBarView(
                 children: [

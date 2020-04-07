@@ -20,7 +20,7 @@ class RecommendPage extends StatefulWidget {
 }
 
 class RecommendPageState
-    extends BasePageState<RecommendPage, RecommendPresenter> {
+    extends BasePageState<RecommendPage, RecommendPresenter>  with AutomaticKeepAliveClientMixin<RecommendPage> {
   int _page = 1;
   BaseListProvider<Articles> provider = BaseListProvider<Articles>();
 
@@ -33,6 +33,7 @@ class RecommendPageState
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<BaseListProvider<Articles>>(
       create: (_) => provider,
       child: Consumer<BaseListProvider<Articles>>(
@@ -184,4 +185,7 @@ class RecommendPageState
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

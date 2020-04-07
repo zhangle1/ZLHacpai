@@ -6,6 +6,8 @@ import 'package:zhacpai/first/presenter/recommend_presenter.dart';
 import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
+import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/routers/routers.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
 
@@ -16,7 +18,7 @@ class HotPage extends StatefulWidget {
   }
 }
 
-class HotPageState extends BasePageState<HotPage, HotPresenter> {
+class HotPageState extends BasePageState<HotPage, HotPresenter>    with AutomaticKeepAliveClientMixin<HotPage>{
   int _page = 1;
   BaseListProvider<Articles> provider = BaseListProvider<Articles>();
 
@@ -30,6 +32,8 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     return ChangeNotifierProvider<BaseListProvider<Articles>>(
       create: (_) => provider,
       child: Consumer<BaseListProvider<Articles>>(
@@ -74,7 +78,12 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
               bottom: new BorderSide(
                   color: Colours.searchBackgroundColor, width: 1.0))),
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+
+          NavigatorUtils.push(
+              context,
+              '${Routes.articleDetails}?articleId=${article.oId}&nickName=${Uri.encodeComponent(article.articleAuthor.userNickname)}&image=${Uri.encodeComponent(article.articleAuthorThumbnailURL96)}');
+        },
         child: Container(
           padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
           child: Row(
@@ -110,4 +119,8 @@ class HotPageState extends BasePageState<HotPage, HotPresenter> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

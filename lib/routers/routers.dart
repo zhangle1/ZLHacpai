@@ -31,7 +31,7 @@ class Routes {
         handlerFunc: (BuildContext context, Map<String, List<String>> params) => Home()));
     router.define(articleDetails, handler: Handler(handlerFunc: (_,params){
       String articleId=  params['articleId'].first.toString();
-      String nickName=Uri.decodeComponent(params['nickName'].first.toString()??'');
+      String nickName=params['nickName'].first.toString()??'';
       LogUtil.e("articleId:"+articleId);
 
       LogUtil.e("nickname:"+nickName);

@@ -10,6 +10,8 @@ import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
 import 'package:zhacpai/res/gaps.dart';
+import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/routers/routers.dart';
 import 'package:zhacpai/util/cookie_utils.dart';
 import 'package:zhacpai/util/log_utils.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
@@ -22,7 +24,9 @@ class FollowPage extends StatefulWidget {
   }
 }
 
-class FollowPageState extends BasePageState<FollowPage, FollowPresenter> {
+class FollowPageState extends BasePageState<FollowPage, FollowPresenter>
+    with AutomaticKeepAliveClientMixin<FollowPage>
+{
   int _page = 1;
   BaseListProvider<MyFollowItemModel> provider =
       BaseListProvider<MyFollowItemModel>();
@@ -48,6 +52,7 @@ class FollowPageState extends BasePageState<FollowPage, FollowPresenter> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return ChangeNotifierProvider<BaseListProvider<MyFollowItemModel>>(
       create: (_) => provider,
       child: Consumer<BaseListProvider<MyFollowItemModel>>(
@@ -181,7 +186,11 @@ class FollowPageState extends BasePageState<FollowPage, FollowPresenter> {
       padding: const EdgeInsets.only(bottom: 12.0),
       margin: const EdgeInsets.only(bottom: 12.0),
       child: FlatButton(
-        onPressed: () {},
+        onPressed: () {
+          NavigatorUtils.push(
+              context,
+              '${Routes.articleDetails}?articleId=${article.oId}&nickName=${Uri.encodeComponent(article.articleAuthor.userNickname)}&image=${Uri.encodeComponent(article.articleAuthorThumbnailURL96)}');
+        },
         child: new Column(
           children: <Widget>[
             new Container(
@@ -237,6 +246,10 @@ class FollowPageState extends BasePageState<FollowPage, FollowPresenter> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
 }
 
