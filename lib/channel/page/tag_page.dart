@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zhacpai/channel/model/domain_articles_entity.dart';
-import 'package:zhacpai/channel/presenter/domain_presenter.dart';
+import 'package:zhacpai/channel/model/tag_articles_entity.dart';
+import 'package:zhacpai/channel/presenter/tag_presenter.dart';
 import 'package:zhacpai/first/provider/base_list_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
@@ -12,18 +12,22 @@ import 'package:zhacpai/util/cookie_utils.dart';
 import 'package:zhacpai/widgets/my_refresh_list.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
 
-class DoMainPage extends StatefulWidget {
-  final String domainLabel;
+class TagPage extends StatefulWidget{
 
-  DoMainPage({this.domainLabel = ''});
+  final String tagsLabel;
+
+  TagPage({this.tagsLabel=''});
 
   @override
   State<StatefulWidget> createState() {
-    return DoMainPageState();
+    return TagPageState();
   }
+
+
 }
 
-class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
+class TagPageState extends BasePageState<TagPage,TagPresenter> {
+
   int _page = 1;
   BaseListProvider<Articles> provider = BaseListProvider<Articles>();
 
@@ -33,6 +37,7 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
     super.initState();
     _onRefresh();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -45,15 +50,15 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
               iconTheme: IconThemeData(color: Colours.text),
               backgroundColor: Colors.white,
               title: Text(
-                '领域列表',
+                '标签列表',
                 style: TextStyle(color: Colours.text, fontSize: 20),
               ),
               centerTitle: true,
             ),
             body: Container(
-              color: Colours.searchBackgroundColor,
-              child: DeerListView(
-                  key: Key('domainlist'),
+                color: Colours.searchBackgroundColor,
+                child: DeerListView(
+                  key: Key('taglist'),
                   itemCount: provider.list.length,
                   stateType: provider.stateType,
                   onRefresh: _onRefresh,
@@ -63,7 +68,7 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
                   itemBuilder: (_, index) {
                     return commonCard(provider.list[index]);
                   },
-            )
+                )
             ),
           );
         },
@@ -71,19 +76,21 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
     );
   }
 
+
+
   Future _onRefresh() async {
     _page = 1;
-    await presenter.getDomainArticles(_page, false, widget.domainLabel);
+    await presenter.getTagsArticles(_page, false, widget.tagsLabel);
   }
 
   Future _loadMore() async {
     _page++;
-    await presenter.getDomainArticles(_page, false, widget.domainLabel);
+    await presenter.getTagsArticles(_page, false, widget.tagsLabel);
   }
 
   @override
   createPresenter() {
-    return DomainPresenter();
+    return TagPresenter();
   }
 
   Widget commonCard(Articles article) {
@@ -120,9 +127,9 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
                         image: NetworkImage(article.articleThumbnailURL,
                             headers: map),
                         centerSlice:
-                            Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0)),
+                        Rect.fromLTRB(270.0, 180.0, 1360.0, 730.0)),
                     borderRadius:
-                        const BorderRadius.all(const Radius.circular(6.0))),
+                    const BorderRadius.all(const Radius.circular(6.0))),
               ),
             ),
           )
@@ -197,4 +204,7 @@ class DoMainPageState extends BasePageState<DoMainPage, DomainPresenter> {
       ),
     );
   }
+
+
+
 }

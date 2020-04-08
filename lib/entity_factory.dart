@@ -6,6 +6,7 @@
 //return UserEntity.fromJson(json) as T;
 //}
 import 'package:zhacpai/channel/model/domain_articles_entity.dart';
+import 'package:zhacpai/channel/model/tag_articles_entity.dart';
 
 import 'first/models/article_entity.dart';
 
@@ -17,6 +18,8 @@ class EntityFactory {
       return ArticleEntity.fromJson(json) as T;
     }else if(T.toString()=='DomainArticlesEntity'){
       return DomainArticlesEntity.fromJson(json) as T;
+    }else if(T.toString()=='TagArticlesEntity'){
+      return TagArticlesEntity.fromJson(json) as T;
     }else{
       return null;
     }

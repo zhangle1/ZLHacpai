@@ -26,4 +26,6 @@ class HttpApi{
 
   //channel
 static const String domainArticles='articles/domain/';
+static const String tagArticles='articles/tag/';
+
 }

@@ -1,20 +1,23 @@
-import 'package:zhacpai/channel/model/domain_articles_entity.dart';
-import 'package:zhacpai/channel/page/domain_page.dart';
+
+
+import 'package:zhacpai/channel/model/tag_articles_entity.dart';
+import 'package:zhacpai/channel/page/tag_page.dart';
 import 'package:zhacpai/mvp/base_page_presenter.dart';
 import 'package:zhacpai/net/dio_utils.dart';
 import 'package:zhacpai/net/http_api.dart';
 import 'package:zhacpai/util/log_utils.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
 
-class DomainPresenter extends BasePagePresenter<DoMainPageState> {
-  Future getDomainArticles(int page, bool isShowDialog,String domainLabel) async {
+class TagPresenter extends  BasePagePresenter<TagPageState>{
 
+  Future getTagsArticles(int page, bool isShowDialog,String tagLabel) async{
     Map<String, String> params = Map();
     params['p']=page.toString();
 
-    String url =HttpApi.domainArticles+domainLabel;
+    String url =HttpApi.tagArticles+tagLabel;
 
-    await requestNetwork<DomainArticlesEntity>(Method.get, url: url,
+
+    await requestNetwork<TagArticlesEntity>(Method.get, url: url,
         queryParameters: params,
         isShow: isShowDialog,
         onSuccess: (data){
@@ -25,7 +28,7 @@ class DomainPresenter extends BasePagePresenter<DoMainPageState> {
             ///
             var hasMore=data.articles.length == data.pagination.paginationPageCount;
             Log.e("hasMore:"+hasMore.toString()+"articles.length:"+data.articles.length.toString()+"pageCount:"+data.pagination.paginationPageCount.toString());
-            view.provider.setHasMore(true);
+            view.provider.setHasMore(hasMore);
             if (page == 1) {
               /// 刷新
               view.provider.list.clear();
@@ -36,6 +39,8 @@ class DomainPresenter extends BasePagePresenter<DoMainPageState> {
               }
             } else {
               view.provider.addAll(data.articles);
+              view.provider.setHasMore(hasMore);
+
             }
           } else {
             /// 加载失败
@@ -48,7 +53,6 @@ class DomainPresenter extends BasePagePresenter<DoMainPageState> {
 
         }
     );
-
 
   }
 }

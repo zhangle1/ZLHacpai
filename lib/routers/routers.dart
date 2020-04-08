@@ -2,6 +2,7 @@ import 'package:common_utils/common_utils.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:zhacpai/channel/page/domain_page.dart';
+import 'package:zhacpai/channel/page/tag_page.dart';
 import 'package:zhacpai/first/page/article_details_page.dart';
 import 'package:zhacpai/home/home_page.dart';
 import 'package:zhacpai/login/login_router.dart';
@@ -19,6 +20,8 @@ class Routes {
 
 
   static String domainArticles='/domainArticles';
+  static String tagsArticles='/tagArticles';
+
 
   static List<IRouterProvider> _listRouter = [];
 
@@ -46,6 +49,13 @@ class Routes {
       String domainLabel=params['domainLabel'].first.toString();
 
       return DoMainPage(domainLabel:domainLabel);
+    } ));
+
+
+    router.define(tagsArticles, handler: Handler(handlerFunc:(_,params){
+      String tagLabel=params['tagsLabel'].first.toString();
+
+      return TagPage(tagsLabel:Uri.decodeComponent(tagLabel));
     } ));
 
 

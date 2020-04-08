@@ -56,7 +56,7 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
                           DoMainGridView(
                               provider.channelEntity.doMainListEntity),
                           createSpaceContainer(),
-                          TagsHeader((){
+                          TagsHeader(() {
                             presenter.getChangesTagsData();
                           }),
                           createTagsChips(provider.channelEntity.tagsListEntity)
@@ -108,21 +108,26 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
 
     for (var i = 0; i < itemDatas.length; i++) {
       itemWidgets.add(InkWell(
-        onTap: (){
-          NavigatorUtils.push(context, Routes.domainArticles+'?domainLabel='+itemDatas[i].domainURI.substring(itemDatas[i].domainURI.lastIndexOf('/')+1));
+        onTap: () {
+          NavigatorUtils.push(
+              context,
+              Routes.domainArticles +
+                  '?domainLabel=' +
+                  itemDatas[i]
+                      .domainURI
+                      .substring(itemDatas[i].domainURI.lastIndexOf('/') + 1));
         },
         child: Container(
-            child:
-           Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                SvgPicture.string(itemDatas[i].domainIconPath, width: 40, height: 40),
-                Gaps.vGap4,
-                Text(itemDatas[i].domainTitle,
-                    style: TextStyle(color: Colours.dark_bg_gray))
-              ],
-            )
-        ),
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SvgPicture.string(itemDatas[i].domainIconPath,
+                width: 40, height: 40),
+            Gaps.vGap4,
+            Text(itemDatas[i].domainTitle,
+                style: TextStyle(color: Colours.dark_bg_gray))
+          ],
+        )),
       ));
     }
 
@@ -153,7 +158,7 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
   TagsHeader(Function() tagsChange) {
     return Container(
       padding:
-      EdgeInsets.only(left: 16.0, top: 10.0, right: 16.0, bottom: 10.0),
+          EdgeInsets.only(left: 16.0, top: 10.0, right: 16.0, bottom: 10.0),
       color: Colors.white,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -161,7 +166,7 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
           Expanded(
               child: Text("标签",
                   style:
-                  TextStyle(height: 1.3, color: Colours.dark_text_gray))),
+                      TextStyle(height: 1.3, color: Colours.dark_text_gray))),
           FlatButton(
               child: Row(
                 children: <Widget>[
@@ -176,41 +181,35 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
         ],
       ),
     );
-
-
   }
 
-  createTagsChips
-      (TagsListEntity tagsListEntity) {
-    List<Widget> chips =   tagsListEntity.data.tags.map<Widget>(
-            (Tags tags){
-              return Chip(
-                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                key: ValueKey<String>(tags.tagTitle),
-                backgroundColor: getChipBgColor(tags.tagTitle),
-                label: Text(
-                  tags.tagTitle,
-                  style: new TextStyle(fontSize: 14.0),
-                ),
-              );
-            }
-
-        ).toList();
+  createTagsChips(TagsListEntity tagsListEntity) {
+    List<Widget> chips = tagsListEntity.data.tags.map<Widget>((Tags tags) {
       return InkWell(
-        onTap: (){},
-        child: _ChipsTile(
-
-          children: chips,
+        onTap: () {
+          NavigatorUtils.push(
+              context,
+              Routes.tagsArticles +
+                  '?tagsLabel=' +
+                 Uri.encodeComponent(tags.tagTitle));
+        },
+        child: Chip(
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          key: ValueKey<String>(tags.tagTitle),
+          backgroundColor: getChipBgColor(tags.tagTitle),
+          label: Text(
+            tags.tagTitle,
+            style: new TextStyle(fontSize: 14.0),
+          ),
         ),
       );
-
-
-
-
+    }).toList();
+    return InkWell(
+      child: _ChipsTile(
+        children: chips,
+      ),
+    );
   }
-
-
-
 }
 
 class _ChipsTile extends StatelessWidget {
@@ -226,19 +225,17 @@ class _ChipsTile extends StatelessWidget {
   // Wraps a list of chips into a ListTile for display as a section in the demo.
   @override
   Widget build(BuildContext context) {
-    final List<Widget> cardChildren = <Widget>[
-
-    ];
+    final List<Widget> cardChildren = <Widget>[];
     cardChildren.add(Wrap(
         children: children.map((Widget chip) {
-          return Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: chip,
-          );
-        }).toList()));
+      return Padding(
+        padding: const EdgeInsets.all(3.0),
+        child: chip,
+      );
+    }).toList()));
 
     return new Container(
-      padding: EdgeInsets.only(left: 16.0,right: 16.0,bottom: 16.0),
+      padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
@@ -251,4 +248,3 @@ class _ChipsTile extends StatelessWidget {
     );
   }
 }
-
