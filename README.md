@@ -3,10 +3,10 @@ hacpai的第三方客户端
 
 ### 示例图片
 
-<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/splash.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_login.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_follow.png" width="130px"/>
-<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_hot.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_recommend.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/articles_detail.png" width="130px"/>
-<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/channel.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/dynamic.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/my.png" width="130px"/>
-<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/domain_list.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/tag_list.png" width="130px"/>
+<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/splash.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_login.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_follow.jpg" width="130px"/>
+<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_hot.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/home_recommend.jpg" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/articles_detail.png" width="130px"/>
+<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/channel.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/dynamic.jpg" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/my.png" width="130px"/>
+<img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/domain_list.jpg" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/tag_list.png" width="130px"/>
 
 ### 版权所有w
 本项目是本人第一次写flutterO(∩_∩)O哈哈~,所有参考了第三方开源app的写法,ui所以在这里列下版权所有
