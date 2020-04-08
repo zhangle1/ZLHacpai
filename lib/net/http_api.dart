@@ -22,4 +22,8 @@ class HttpApi{
 
   static const String lastArticles='articles/latest';
 
+
+
+  //channel
+static const String domainArticles='articles/domain/';
 }

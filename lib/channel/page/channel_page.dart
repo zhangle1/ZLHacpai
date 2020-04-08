@@ -9,6 +9,8 @@ import 'package:zhacpai/channel/provider/channel_provider.dart';
 import 'package:zhacpai/mvp/base_page_state.dart';
 import 'package:zhacpai/res/colors.dart';
 import 'package:zhacpai/res/gaps.dart';
+import 'package:zhacpai/routers/fluro_navigator.dart';
+import 'package:zhacpai/routers/routers.dart';
 import 'package:zhacpai/util/randomUtils.dart';
 import 'package:zhacpai/widgets/load_image.dart';
 import 'package:zhacpai/widgets/state_layout.dart';
@@ -78,17 +80,17 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
               child: Text("领域",
                   style:
                       TextStyle(height: 1.3, color: Colours.dark_text_gray))),
-          FlatButton(
-              child: Row(
-                children: <Widget>[
-                  Text("换一换",
-                      style: TextStyle(
-                          height: 1.3, color: Colours.dark_text_gray)),
-                  Gaps.hGap4,
-                  LoadSVGAssetImage('ic_refresh', width: 20, height: 20)
-                ],
-              ),
-              onPressed: () => {}),
+//          FlatButton(
+//              child: Row(
+//                children: <Widget>[
+//                  Text("换一换",
+//                      style: TextStyle(
+//                          height: 1.3, color: Colours.dark_text_gray)),
+//                  Gaps.hGap4,
+//                  LoadSVGAssetImage('ic_refresh', width: 20, height: 20)
+//                ],
+//              ),
+//              onPressed: () => {}),
         ],
       ),
     );
@@ -106,6 +108,9 @@ class ChannelPageState extends BasePageState<ChannelPage, ChannelPresenter>
 
     for (var i = 0; i < itemDatas.length; i++) {
       itemWidgets.add(InkWell(
+        onTap: (){
+          NavigatorUtils.push(context, Routes.domainArticles+'?domainLabel='+itemDatas[i].domainURI.substring(itemDatas[i].domainURI.lastIndexOf('/')+1));
+        },
         child: Container(
             child:
            Column(
