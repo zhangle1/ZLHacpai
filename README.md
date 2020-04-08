@@ -8,13 +8,13 @@ hacpai的第三方客户端
 <img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/channel.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/dynamic.png" width="130px"/><img src="https://github.com/zhangle1/ZLHacpai/blob/master/img/my.png" width="130px"/>
 
 
-### 版权所有
+### 版权所有w
 本项目是本人第一次写flutterO(∩_∩)O哈哈~,所有参考了第三方开源app的写法,ui所以在这里列下版权所有
 
-[主要架构和部分页面登录,借用了flutter_deer](https://github.com/simplezhli/flutter_deer)
+>[主要架构和部分页面登录,借用了flutter_deer](https://github.com/simplezhli/flutter_deer)
 因为对android很熟悉，所有很顺手的用了flutter_deer的mvp架构,22223
-[其余ui借用了flutter_zhihu这个项目](https://github.com/xujiyou/zhihu-flutter)
-[api相关调用，用了黑客派开放的接口](https://hacpai.com/article/1488603534762)
+>[其余ui借用了flutter_zhihu这个项目](https://github.com/xujiyou/zhihu-flutter)
+>[api相关调用，用了黑客派开放的接口](https://hacpai.com/article/1488603534762)
 ### 第三方库
 | 库                          | 功能             |
 | -------------------------- | -------------- |
